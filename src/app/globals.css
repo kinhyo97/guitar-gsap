@@ -13,6 +13,13 @@ body {
   overscroll-behavior: none;
 }
 
+html.fullpage-lock,
+body.fullpage-lock {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   min-height: 100%;
   display: flex;
