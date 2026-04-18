@@ -176,6 +176,13 @@ export function FullpageScroller({ sections }: FullpageScrollerProps) {
 
         moveTo(delta > 0 ? 1 : -1);
       }}
+      onTouchMove={(event) => {
+        if (touchStartYRef.current === null) {
+          return;
+        }
+
+        event.preventDefault();
+      }}
       onTouchStart={(event) => {
         touchStartYRef.current = event.touches[0].clientY;
       }}

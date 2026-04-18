@@ -3,6 +3,8 @@
   height: var(--fullpage-height, 100vh);
   min-height: var(--fullpage-height, 100vh);
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
   transition:
     background-color 700ms ease,
     color 700ms ease;
