@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { FullpageScroller } from "@/components/fullpage/FullpageScroller";
 import { FullpageSection } from "@/components/sections/home/FullpageSection";
 import { GuitarShowcase } from "@/components/sections/home/GuitarShowcase";
@@ -142,5 +143,37 @@ const sections = [
 ];
 
 export function HomeExperience() {
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousHtmlOverscroll = html.style.overscrollBehavior;
+    const previousBodyOverscroll = body.style.overscrollBehavior;
+    const previousBodyPosition = body.style.position;
+    const previousBodyInset = body.style.inset;
+    const previousBodyWidth = body.style.width;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+    body.style.overscrollBehavior = "none";
+    body.style.position = "fixed";
+    body.style.inset = `-${scrollY}px 0 0 0`;
+    body.style.width = "100%";
+
+    return () => {
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      html.style.overscrollBehavior = previousHtmlOverscroll;
+      body.style.overscrollBehavior = previousBodyOverscroll;
+      body.style.position = previousBodyPosition;
+      body.style.inset = previousBodyInset;
+      body.style.width = previousBodyWidth;
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
   return <FullpageScroller sections={sections} />;
 }
