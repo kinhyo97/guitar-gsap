@@ -1,0 +1,103 @@
+.section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.viewport {
+  height: 100%;
+  padding: 120px 48px 64px;
+}
+
+.content {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+  will-change: transform;
+}
+
+.eyebrow {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.title {
+  max-width: 10ch;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.intro {
+  max-width: 60ch;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.82;
+}
+
+.card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.cardTitle {
+  margin-bottom: 10px;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+}
+
+.cardText {
+  line-height: 1.8;
+  opacity: 0.82;
+}
+
+.progress {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.progressLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.progressTrack {
+  width: 140px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.progressBar {
+  height: 100%;
+  background: currentColor;
+  transition: width 120ms linear;
+}
+
+@media (max-width: 767px) {
+  .viewport {
+    padding: 104px 24px 48px;
+  }
+
+  .title {
+    max-width: none;
+  }
+
+  .progress {
+    right: 16px;
+    bottom: 18px;
+  }
+}

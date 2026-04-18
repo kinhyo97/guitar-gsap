@@ -1,0 +1,166 @@
+.section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 48px 48px;
+}
+
+.background {
+  position: absolute;
+  inset: -4%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(18px);
+  transform: scale(1.08);
+  opacity: 0.34;
+  transition:
+    background-image 420ms ease,
+    opacity 420ms ease;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 48%),
+    linear-gradient(180deg, rgba(7, 10, 12, 0.24), rgba(7, 10, 12, 0.76));
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, 100%);
+  display: grid;
+  gap: 20px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.title {
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.description {
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+.stage {
+  position: relative;
+  min-height: 500px;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(340px, 42vw);
+  aspect-ratio: 2 / 3;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 30px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  appearance: none;
+  cursor: default;
+}
+
+.cardInteractive {
+  cursor: pointer;
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.4));
+}
+
+.cardCopy {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  display: grid;
+  gap: 8px;
+}
+
+.cardLabel {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.74;
+}
+
+.cardTitle {
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.meta {
+  justify-self: center;
+  min-width: 112px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 104px 20px 40px;
+  }
+
+  .stage {
+    min-height: 420px;
+  }
+
+  .card {
+    width: min(250px, 62vw);
+    border-radius: 22px;
+  }
+
+  .cardCopy {
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+  }
+}

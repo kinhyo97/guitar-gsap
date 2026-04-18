@@ -1,0 +1,26 @@
+:root {
+  --color-ink: #111111;
+  --color-surface: #f6f3ec;
+  --color-surface-strong: #e8dfcf;
+  --color-panel: #fffdf8;
+  --color-line: rgba(17, 17, 17, 0.12);
+  --color-brand: #1f5eff;
+  --color-brand-strong: #0f44d4;
+  --color-accent: #ff7a00;
+  --color-muted: #5f646d;
+  --color-inverse: #ffffff;
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Consolas", "SFMono-Regular", monospace;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --shadow-soft: 0 18px 60px rgba(17, 17, 17, 0.08);
+  --container: min(1120px, calc(100vw - 48px));
+  --transition-base: 220ms ease;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --container: calc(100vw - 32px);
+  }
+}
