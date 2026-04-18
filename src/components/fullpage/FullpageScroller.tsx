@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./FullpageScroller.module.css";
 
@@ -25,6 +26,7 @@ export function FullpageScroller({ sections }: FullpageScrollerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(0);
   const lockRef = useRef(false);
   const touchStartYRef = useRef<number | null>(null);
 
@@ -115,6 +117,19 @@ export function FullpageScroller({ sections }: FullpageScrollerProps) {
   );
 
   useEffect(() => {
+    const updateViewportHeight = () => {
+      setViewportHeight(window.innerHeight);
+    };
+
+    updateViewportHeight();
+    window.addEventListener("resize", updateViewportHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateViewportHeight);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowDown" || event.key === "PageDown") {
         event.preventDefault();
@@ -137,6 +152,11 @@ export function FullpageScroller({ sections }: FullpageScrollerProps) {
   const activeSection = sections[activeIndex];
   const activeBackground = activeSection.backgrounds[activeStep];
   const activeForeground = activeSection.foregrounds[activeStep];
+  const shellStyle = {
+    backgroundColor: activeBackground,
+    color: activeForeground,
+    "--fullpage-height": viewportHeight > 0 ? `${viewportHeight}px` : "100vh",
+  } as CSSProperties;
 
   return (
     <div
@@ -166,14 +186,16 @@ export function FullpageScroller({ sections }: FullpageScrollerProps) {
 
         moveTo(event.deltaY > 0 ? 1 : -1, Math.abs(event.deltaY));
       }}
-      style={{
-        backgroundColor: activeBackground,
-        color: activeForeground,
-      }}
+      style={shellStyle}
     >
       <div
         className={styles.track}
-        style={{ transform: `translateY(-${activeIndex * 100}vh)` }}
+        style={{
+          transform:
+            viewportHeight > 0
+              ? `translateY(-${activeIndex * viewportHeight}px)`
+              : `translateY(-${activeIndex * 100}vh)`,
+        }}
       >
         {sections.map((section, index) => (
           <div key={section.id}>
